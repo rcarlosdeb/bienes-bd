@@ -1,0 +1,38 @@
+version: "3"
+ 
+services:
+  miservicio_mysql:
+    build: ./mysqlbd
+    environment:
+      - MYSQL_DATABASE=bienes
+      - MYSQL_ROOT_PASSWORD=claveroot
+      - MYSQL_USER=miusuario
+      - MYSQL_PASSWORD=mipassword
+    volumes:
+      # Montamos un volumen para MySQL para no perder los datos de bd
+      - bd-mysql:/var/lib/mysql
+    expose:
+      - 3306
+    ports:
+      - 3306:3306
+    healthcheck:
+      test: mysql --user=miusuario --password=mipassword -e "select 1"
+      interval: 3s
+      timeout: 10s
+      retries: 15
+   
+  miservicio_php:
+    image: php:7.2-apache
+    volumes:
+      # Montamos nuestra web desde fuera en el directorio web del contenedor
+      - ./web/:/var/www/html
+    expose:
+      - 80
+    ports:
+      - 80:80
+    links: 
+      - miservicio_mysql
+    depends_on:
+      - miservicio_mysql
+volumes:
+    bd-mysql:
