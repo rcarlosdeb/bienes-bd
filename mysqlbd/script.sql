@@ -25,15 +25,15 @@ DROP TABLE IF EXISTS `bien`;
 CREATE TABLE `bien` (
   `id_bien` int(11) NOT NULL AUTO_INCREMENT,
   `id_marca` int(11) DEFAULT NULL,
-  `id_proveedor` int(11) DEFAULT NULL,
+  `id_proveedor` int(11) NOT NULL,
   `id_departamento` int(11) DEFAULT NULL,
-  `id_sub_categoria` int(11) DEFAULT NULL,
-  `monto_adquisicion` decimal(10,2) DEFAULT NULL,
-  `vida_util` int(11) DEFAULT NULL,
+  `id_sub_categoria` int(11) NOT NULL,
+  `monto_adquisicion` decimal(10,2) NOT NULL,
+  `vida_util` int(11) NOT NULL,
   `detalle` varchar(500) DEFAULT NULL,
-  `meses_depreciacion` int(11) DEFAULT NULL,
-  `depreciacion_mensual` int(11) DEFAULT NULL,
-  `id_usuario` int(11) DEFAULT NULL,
+  `meses_depreciacion` int(11) NOT NULL,
+  `depreciacion_mensual` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id_bien`),
   KEY `id_marca` (`id_marca`),
   KEY `id_proveedor` (`id_proveedor`),
@@ -66,7 +66,7 @@ DROP TABLE IF EXISTS `categoria`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `categoria` (
   `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(50) DEFAULT NULL,
+  `nombre` varchar(50) NOT NULL,
   PRIMARY KEY (`id_categoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -135,7 +135,7 @@ DROP TABLE IF EXISTS `proveedor`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `proveedor` (
   `id_proveedor` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(250) DEFAULT NULL,
+  `nombre` varchar(250) NOT NULL,
   PRIMARY KEY (`id_proveedor`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
