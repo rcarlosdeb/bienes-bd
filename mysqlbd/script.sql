@@ -34,6 +34,7 @@ CREATE TABLE `bien` (
   `meses_depreciacion` int(11) NOT NULL,
   `depreciacion_mensual` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
+  `activo` boolean DEFAULT TRUE,
   PRIMARY KEY (`id_bien`),
   KEY `id_marca` (`id_marca`),
   KEY `id_proveedor` (`id_proveedor`),
